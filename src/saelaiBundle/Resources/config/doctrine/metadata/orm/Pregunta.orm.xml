@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Pregunta" table="pregunta">
+    <indexes>
+      <index name="fk_pregunta_examen" columns="idExamen"/>
+    </indexes>
+    <id name="idpregunta" type="integer" column="idPregunta">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="reactivo" type="text" column="reactivo" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="estado" type="integer" column="estado" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <many-to-one field="idexamen" target-entity="Examen" fetch="LAZY">
+      <join-columns>
+        <join-column name="idExamen" referenced-column-name="idExamen"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

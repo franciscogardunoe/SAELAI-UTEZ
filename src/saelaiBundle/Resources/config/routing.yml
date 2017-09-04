@@ -1,0 +1,10 @@
+saelai_homepage:
+    path:     /
+    defaults: { _controller: saelaiBundle:Default:index }
+
+saelai_example_template:
+    path:     /example/template
+    defaults: { _controller: saelaiBundle:Default:ExampleTemplate }
+    
+
+    

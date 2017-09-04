@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Examenasignado" table="examenasignado">
+    <indexes>
+      <index name="fk_examenasignado_grupo" columns="idGrupo"/>
+      <index name="fk_examenasignado_examen" columns="idExamen"/>
+    </indexes>
+    <id name="idexamenasignado" type="integer" column="idExamenAsignado">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="idgrupo" target-entity="Grupo" fetch="LAZY">
+      <join-columns>
+        <join-column name="idGrupo" referenced-column-name="idGrupo"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idexamen" target-entity="Examen" fetch="LAZY">
+      <join-columns>
+        <join-column name="idExamen" referenced-column-name="idExamen"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

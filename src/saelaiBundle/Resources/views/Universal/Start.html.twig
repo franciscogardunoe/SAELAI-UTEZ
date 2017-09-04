@@ -1,0 +1,85 @@
+{% extends "saelaiBundle::Template.html.twig" %}
+
+{% block main %}
+
+    {% block name %}
+        <h6 class="navbar-brand" href="#">Manager | Amalia Rojas</h6> 
+    {% endblock %}
+
+    {% block start %}
+        <li class="active">
+            <a href="dashboard.html">
+                <i class="pe-7s-home"></i>
+                <p>Start</p>
+            </a>
+        </li>
+    {% endblock %}
+
+    {% block contenido %}
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <!--AQUÍ VA TODO EL CONTENIDO DE LA PÁGINA-->
+                            <div class="header">
+                                <h4 class="title">Students</h4>
+                                <p class="category">Here is a subtitle for this table</p>
+                                <button type="submit" class="btn btn-success btn-fill pull-right">New Student</button>
+                            </div>
+                            <table id="tabla" class="footable table table-stripped" data-page-size="8" data-filter=#filter>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre completo</th>
+                                        <th>Clasificación</th>
+                                        <th>Roles</th>
+                                        <th>Fecha ingreso CDS</th>
+                                        <th>Estatus</th>
+                                        <th class="actions"></th>  
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test</td>
+                                        <td>test<td>
+                                        <td class="actions pull-right">
+                                            <a data-toggle='modal' data-target="#modal-updatestatus" title="Cambiar estatus" class="btn btn-primary btn-fill">
+                                                <i class="fa fa-refresh"></i>
+                                            </a>
+                                            <a data-toggle="tooltip" href="" data-placement="top" title="Ver perfil" class="btn btn-info btn-fill">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a data-toggle='modal' data-target="#modal-deleteResource" title="Eliminar recurso" class="btn btn-warning btn-fill">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a data-toggle='modal' data-target="#modal-deleteResource" title="Eliminar recurso" class="btn btn-danger btn-fill">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </td>
+                                    <tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="12">
+                                            <ul class="pagination pull-right"></ul>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block modal %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+

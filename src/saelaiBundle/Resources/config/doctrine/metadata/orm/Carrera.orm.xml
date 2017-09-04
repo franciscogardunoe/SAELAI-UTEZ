@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Carrera" table="carrera">
+    <indexes>
+      <index name="fk_carrera_division" columns="idDivision"/>
+    </indexes>
+    <id name="idcarrera" type="integer" column="idCarrera">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombre" type="text" column="nombre" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="estado" type="integer" column="estado" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <many-to-one field="iddivision" target-entity="Division" fetch="LAZY">
+      <join-columns>
+        <join-column name="idDivision" referenced-column-name="idDivision"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
