@@ -1,2 +1,17 @@
-## YAML Template.
----
+saelai_homepage:
+    path:     /
+    defaults: { _controller: saelaiBundle:Default:index }
+
+saelai_example_template:
+    path:     /example/template
+    defaults: { _controller: saelaiBundle:Default:ExampleTemplate }
+
+
+#STUDENTS
+saelai_manager_student:
+    path:     /manager/student
+    defaults: { _controller: saelaiBundle:Manager\Student:Student }
+
+
+    
+    

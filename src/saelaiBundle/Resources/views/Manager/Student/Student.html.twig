@@ -8,7 +8,7 @@
 
     {% block students %}
         <li class="active">
-            <a href="user.html">
+            <a href="{{path('saelai_manager_student')}}">
                 <i class="pe-7s-study"></i>
                 <p>Students</p>
             </a>
@@ -20,15 +20,105 @@
             <div class="col-md-12">
                 <div class="card">
                     <!--AQUÍ VA TODO EL CONTENIDO DE LA PÁGINA-->
-                    
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="header">
+                                    <h4 class="title">Students</h4>
+                                    <p class="category">Here is a subtitle for this table</p>                                 
+                                </div>
+                                <button type="submit" class="btn btn-success btn-fill pull-right">New Student</button>
+                                <br>
+                                <br>
+                                <br>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    {% for division in DivisionList %}                               
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading" role="tab" id="headingOneA{{division.idDivision}}">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOneA{{division.idDivision}}" aria-expanded="true" aria-controls="collapseOneA{{division.idDivision}}">
+                                                        {{division.nombre}}
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseOneA{{division.idDivision}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOneA{{division.idDivision}}">
+                                                <div class="panel-body">
+                                                    {% for group in GroupList%}
+                                                        {% if division.idDivision==group.idCarrera.idDivision.idDivision %}
+                                                            <div class="panel-group" id="accordionZ" role="tablist" aria-multiselectable="true">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading" role="tab" id="headingOneZ{{group.idGrupo}}">
+                                                                        <h4 class="panel-title">
+                                                                            <a role="button" data-toggle="collapse" data-parent="#accordionZ" href="#collapseOneZ{{group.idGrupo}}" aria-expanded="true" aria-controls="collapseOneZ{{group.idGrupo}}">
+                                                                                <strong>{{group.cuatrimestre~"°"~group.grupo~" - "~group.idCarrera.nombre}}</strong>
+                                                                            </a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapseOneZ{{group.idGrupo}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOneZ{{group.idGrupo}}">
+                                                                        <div class="panel-body">                                               
+                                                                            <div class="content table-reponsive table-full-width">
+                                                                                <table id="tabla" class="footable table table-stripped" data-page-size="8" data-filter=#filter>
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Name</th>
+                                                                                            <th>ID Number</th>
+                                                                                            <th>Grade/group</th>
+                                                                                            <th>Status</th>
+                                                                                            <th class="actions"></th>  
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        {%for student in StudentList%}
+                                                                                            {%if student.idGrupo.cuatrimestre==group.cuatrimestre %}
+                                                                                                {% if student.idGrupo.grupo==group.grupo  %}
+                                                                                                    {% if student.idGrupo.idCarrera.nombre==group.idCarrera.nombre  %}
+                                                                                                        <tr class="gradeX {{(student.estado == 0 ) ? 'danger'}}">
+                                                                                                            <td>{{student.nombre~' '~student.apellidoP ~' '~student.apellidoM}}</td>
+                                                                                                            <td>{{student.matricula}}</td>
+                                                                                                            <td>{{student.idGrupo.cuatrimestre~"°"~student.idGrupo.grupo}}</td>
+                                                                                                         <!--   <td><center>{{student.idGrupo.idCarrera.nombre}}</center></td>-->
+                                                                                                            <td>{{(student.estado == 1) ? 'Active' : 'Inactive'}}<td>
+                                                                                                            <td class="actions">
+                                                                                                                <a data-toggle='modal' data-target="#modal-updatestatus" title="Change status" class="btn btn-primary btn-fill">
+                                                                                                                    <i class="fa fa-refresh"></i>
+                                                                                                                </a>
+                                                                                                                <a data-toggle="tooltip" href="" data-placement="top" title="View profile" class="btn btn-info btn-fill">
+                                                                                                                    <i class="fa fa-eye"></i>
+                                                                                                                </a>                                                       
+                                                                                                                <a data-toggle='modal' data-target="#modal-deleteResource" title="Delete" class="btn btn-danger btn-fill">
+                                                                                                                    <i class="fa fa-times"></i>
+                                                                                                                </a>
+                                                                                                            </td>
+                                                                                                        <tr>
+                                                                                                        {% endif %}
+                                                                                                    {% endif %}
+                                                                                                {% endif %}
+                                                                                            {% endfor %}
+                                                                                    </tbody>                                                          
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                      
+                                                            </div>
+                                                        {%endif%}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor%}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endblock %}
     {% endblock %}
-{% endblock %}
 
-{% block modal %}
-{% endblock %}
+    {% block modal %}
+    {% endblock %}
 
-{% block javascript %}
-{% endblock %}
+    {% block javascript %}
+    {% endblock %}
